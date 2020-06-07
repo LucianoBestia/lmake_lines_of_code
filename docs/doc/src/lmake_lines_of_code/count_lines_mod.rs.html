@@ -163,6 +163,8 @@
 <span id="163">163</span>
 <span id="164">164</span>
 <span id="165">165</span>
+<span id="166">166</span>
+<span id="167">167</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! count_lines_mod.rs</span>
 
@@ -319,9 +321,11 @@
 
 <span class="doccomment">/// markdown can have nice tables</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">as_md_table</span>(<span class="ident">lines_of_code</span>:<span class="ident">LinesOfCode</span>)<span class="op">-</span><span class="op">&gt;</span><span class="ident">String</span>{
+    <span class="comment">// I added an empty row to have the next row with different color from the header.</span>
     <span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;
 | src code | doc comments | comments | examples | tests |
 | :------: | :----------: | :------: | :------: | :---: |
+|          |              |          |          |       |
 | {:^8   } | {:^12      } | {:^8   } | {:^8   } | {:^5} |&quot;</span>,
 <span class="ident">lines_of_code</span>.<span class="ident">src_code_lines</span>,
 <span class="ident">lines_of_code</span>.<span class="ident">src_doc_comment_lines</span>,
