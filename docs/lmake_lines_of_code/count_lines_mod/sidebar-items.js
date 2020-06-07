@@ -1,1 +1,1 @@
-initSidebarItems({"enum":[["SpecialFolder",""]],"fn":[["count_lines",""]],"struct":[["LinesOfCode",""]]});
+initSidebarItems({"fn":[["as_md_table","markdown can have nice tables"],["one_project_count_lines",""],["workspace_or_project_count_lines",""]],"struct":[["CargoToml",""],["LinesOfCode",""],["Workspace",""]]});

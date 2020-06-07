@@ -164,16 +164,28 @@
 <span id="164">164</span>
 <span id="165">165</span>
 <span id="166">166</span>
+<span id="167">167</span>
+<span id="168">168</span>
+<span id="169">169</span>
+<span id="170">170</span>
+<span id="171">171</span>
+<span id="172">172</span>
+<span id="173">173</span>
+<span id="174">174</span>
+<span id="175">175</span>
+<span id="176">176</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// region: lmake_readme include &quot;readme.md&quot; //! A</span>
 <span class="doccomment">//! # lmake_lines_of_code  </span>
 <span class="doccomment">//! </span>
-<span class="doccomment">//! version: 0.0.7  date: 2020-06-07 authors: Luciano Bestia  </span>
+<span class="doccomment">//! version: 2020.607.1321  date: 2020-06-07 authors: Luciano Bestia  </span>
 <span class="doccomment">//! **Lines of code for Rust projects**</span>
 <span class="doccomment">//! </span>
 <span class="doccomment">//! </span>
-<span class="doccomment">//! Work in progress.\</span>
-<span class="doccomment">//! Not yet prepared for workspaces - multi-project !  </span>
+<span class="doccomment">//! | src code | doc comments | comments | examples | tests |</span>
+<span class="doccomment">//! | :------: | :----------: | :------: | :------: | :---: |</span>
+<span class="doccomment">//! |      |            |        |         |     |</span>
+<span class="doccomment">//! |   233    |      73      |    72    |    0     |   0   |</span>
 <span class="doccomment">//! </span>
 <span class="doccomment">//! ## Lines of code for Rust projects</span>
 <span class="doccomment">//! </span>
@@ -182,17 +194,17 @@
 <span class="doccomment">//! But for 95% of the cases they are good enough.\</span>
 <span class="doccomment">//! Most of the developers use some &quot;standard&quot; coding practices and that is quantifiable and comparable.\</span>
 <span class="doccomment">//! \</span>
-<span class="doccomment">//! The most important count is `lines of code`.\</span>
-<span class="doccomment">//! That is actual code written for that project without comments, doc comments, unit tests, integration tests and examples.\</span>
+<span class="doccomment">//! The `src_code_lines` is the most important count.\</span>
+<span class="doccomment">//! That is actual code written for that project without  doc comments, comments, unit tests, integration tests and examples.\</span>
 <span class="doccomment">//! Sometimes is great to see a big number here. It means there was a lot of work invested. But other times we want to see a small number. It means the developer understands the problem very well and don&#39;t try to solve anything outside that scope.\</span>
 <span class="doccomment">//! \</span>
-<span class="doccomment">//! The doc comments will eventually become docs. The count of lines shows how many documentation is written.\</span>
+<span class="doccomment">//! The `src_doc_comment_lines` counts doc comments. They will eventually become docs. The count of lines shows how many documentation is written.\</span>
 <span class="doccomment">//! \</span>
-<span class="doccomment">//! The comments are important to understand the code. The count of lines shows how understandable is the code.\</span>
+<span class="doccomment">//! The `src_comment_lines` counts code comments. Code comments are important to understand the code. The count of lines shows how understandable is the code.\</span>
 <span class="doccomment">//! \</span>
-<span class="doccomment">//! The count of lines in tests shows how good is the code tested.\</span>
+<span class="doccomment">//! The `tests_lines` counts lines in tests and shows how good is the code tested. Here are the unit tests and integration test combined.\</span>
 <span class="doccomment">//! \</span>
-<span class="doccomment">//! The count of lines in examples shows how good is explained how to use the code.  </span>
+<span class="doccomment">//! The `examples_lines` counts lines in examples and shows how good is explained how to use the code.  </span>
 <span class="doccomment">//! </span>
 <span class="doccomment">//! ## Folder and file structure</span>
 <span class="doccomment">//! </span>
@@ -209,6 +221,10 @@
 <span class="doccomment">//! \</span>
 <span class="doccomment">//! All other files: md, toml, html, js, ... are not counted.  </span>
 <span class="doccomment">//! </span>
+<span class="doccomment">//! ### Workspace</span>
+<span class="doccomment">//! </span>
+<span class="doccomment">//! Workspaces have member projects, that are written in cargo.toml. The program counts lines of every project and sums them together.  </span>
+<span class="doccomment">//! </span>
 <span class="doccomment">//! ## Install</span>
 <span class="doccomment">//! </span>
 <span class="doccomment">//! `cargo install lmake_lines_of_code`  </span>
@@ -224,6 +240,7 @@
 <span class="doccomment">//! </span>
 <span class="doccomment">//! It is recommended to always use [cargo-crev](https://github.com/crev-dev/cargo-crev)\</span>
 <span class="doccomment">//! to verify the trustworthiness of each of your dependencies, including this one.\</span>
+<span class="doccomment">//! `cargo crev verify`\</span>
 <span class="doccomment">//! Please, spread this info.\</span>
 <span class="doccomment">//! On the web use url to read crate reviews example:\</span>
 <span class="doccomment">//! &lt;web.crev.dev/rust-reviews/crate/num-traits/&gt;  </span>
@@ -291,6 +308,8 @@
 <span class="kw">mod</span> <span class="ident">count_lines_mod</span>;
 <span class="kw">mod</span> <span class="ident">utilsmod</span>;
 
+<span class="kw">use</span> <span class="ident">count_lines_mod</span>::<span class="kw-2">*</span>;
+
 <span class="comment">//use clap::*;</span>
 <span class="comment">//use unwrap::unwrap;</span>
 
@@ -314,8 +333,9 @@
         .<span class="ident">author</span>(<span class="macro">env</span><span class="macro">!</span>(<span class="string">&quot;CARGO_PKG_AUTHORS&quot;</span>))
         .<span class="ident">about</span>(<span class="macro">env</span><span class="macro">!</span>(<span class="string">&quot;CARGO_PKG_DESCRIPTION&quot;</span>))
         .<span class="ident">get_matches</span>();
-    <span class="kw">let</span> <span class="ident">v</span> <span class="op">=</span> <span class="ident">count_lines_mod</span>::<span class="ident">count_lines</span>();
-    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;{:#?}&quot;</span>, <span class="ident">v</span>);
+    <span class="comment">//let v = one_project_count_lines();</span>
+    <span class="kw">let</span> <span class="ident">v</span> <span class="op">=</span> <span class="ident">workspace_or_project_count_lines</span>();
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">as_md_table</span>(<span class="ident">v</span>));
 }
 
 <span class="comment">// region: different function code for Linux and Windows</span>
