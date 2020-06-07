@@ -8,6 +8,7 @@ version: 2020.607.1321  date: 2020-06-07 authors: Luciano Bestia
 
 | src code | doc comments | comments | examples | tests |
 | :------: | :----------: | :------: | :------: | :---: |
+|      |            |        |         |     |
 |   233    |      73      |    72    |    0     |   0   |
 
 ## Lines of code for Rust projects
