@@ -1,7 +1,7 @@
 # lmake_lines_of_code  
 
 [comment]: # (lmake_readme cargo.toml data start)
-version: 2020.607.1321  date: 2020-06-07 authors: Luciano Bestia  
+version: 2020.607.1456  date: 2020-06-07 authors: Luciano Bestia  
 **Lines of code for Rust projects**
 
 [comment]: # (lmake_readme cargo.toml data end)

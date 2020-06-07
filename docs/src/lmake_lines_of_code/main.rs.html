@@ -132,53 +132,11 @@
 <span id="132">132</span>
 <span id="133">133</span>
 <span id="134">134</span>
-<span id="135">135</span>
-<span id="136">136</span>
-<span id="137">137</span>
-<span id="138">138</span>
-<span id="139">139</span>
-<span id="140">140</span>
-<span id="141">141</span>
-<span id="142">142</span>
-<span id="143">143</span>
-<span id="144">144</span>
-<span id="145">145</span>
-<span id="146">146</span>
-<span id="147">147</span>
-<span id="148">148</span>
-<span id="149">149</span>
-<span id="150">150</span>
-<span id="151">151</span>
-<span id="152">152</span>
-<span id="153">153</span>
-<span id="154">154</span>
-<span id="155">155</span>
-<span id="156">156</span>
-<span id="157">157</span>
-<span id="158">158</span>
-<span id="159">159</span>
-<span id="160">160</span>
-<span id="161">161</span>
-<span id="162">162</span>
-<span id="163">163</span>
-<span id="164">164</span>
-<span id="165">165</span>
-<span id="166">166</span>
-<span id="167">167</span>
-<span id="168">168</span>
-<span id="169">169</span>
-<span id="170">170</span>
-<span id="171">171</span>
-<span id="172">172</span>
-<span id="173">173</span>
-<span id="174">174</span>
-<span id="175">175</span>
-<span id="176">176</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// region: lmake_readme include &quot;readme.md&quot; //! A</span>
 <span class="doccomment">//! # lmake_lines_of_code  </span>
 <span class="doccomment">//! </span>
-<span class="doccomment">//! version: 2020.607.1321  date: 2020-06-07 authors: Luciano Bestia  </span>
+<span class="doccomment">//! version: 2020.607.1456  date: 2020-06-07 authors: Luciano Bestia  </span>
 <span class="doccomment">//! **Lines of code for Rust projects**</span>
 <span class="doccomment">//! </span>
 <span class="doccomment">//! </span>
@@ -225,9 +183,11 @@
 <span class="doccomment">//! </span>
 <span class="doccomment">//! Workspaces have member projects, that are written in cargo.toml. The program counts lines of every project and sums them together.  </span>
 <span class="doccomment">//! </span>
-<span class="doccomment">//! ## Install</span>
+<span class="doccomment">//! ## Install and run</span>
 <span class="doccomment">//! </span>
 <span class="doccomment">//! `cargo install lmake_lines_of_code`  </span>
+<span class="doccomment">//! In the Rust project folder, where cargo.toml is:  </span>
+<span class="doccomment">//! `lmake_lines_of_code`</span>
 <span class="doccomment">//! </span>
 <span class="doccomment">//! ## Development</span>
 <span class="doccomment">//! </span>
@@ -235,6 +195,12 @@
 <span class="doccomment">//! &lt;https://lucianobestia.github.io/lmake_lines_of_code&gt;\</span>
 <span class="doccomment">//! List of prepared make tasks for development: build, run, doc, publish,...\</span>
 <span class="doccomment">//! `clear; cargo make`  </span>
+<span class="doccomment">//! </span>
+<span class="doccomment">//! ## TODO</span>
+<span class="doccomment">//! </span>
+<span class="doccomment">//! Include the markdown text in readme.md between the placeholders:  </span>
+<span class="doccomment">//! `[comment]: # (lmake_lines_of_code start)`  </span>
+<span class="doccomment">//! `[comment]: # (lmake_lines_of_code end)`  </span>
 <span class="doccomment">//! </span>
 <span class="doccomment">//! ## cargo crev reviews and advisory</span>
 <span class="doccomment">//! </span>
@@ -247,62 +213,12 @@
 <span class="comment">// endregion: lmake_readme include &quot;readme.md&quot; //! A</span>
 
 <span class="comment">// region: Clippy</span>
-<span class="attribute">#![<span class="ident">warn</span>(
-    <span class="ident">clippy</span>::<span class="ident">all</span>,
-    <span class="ident">clippy</span>::<span class="ident">restriction</span>,
-    <span class="ident">clippy</span>::<span class="ident">pedantic</span>,
-    <span class="ident">clippy</span>::<span class="ident">nursery</span>,
-    <span class="ident">clippy</span>::<span class="ident">cargo</span>,
-    <span class="comment">// variable shadowing is idiomatic to Rust, but unnatural to me.</span>
-    <span class="ident">clippy</span>::<span class="ident">shadow_reuse</span>,
-    <span class="ident">clippy</span>::<span class="ident">shadow_same</span>,
-    <span class="ident">clippy</span>::<span class="ident">shadow_unrelated</span>,
+<span class="attribute">#![<span class="ident">deny</span>(<span class="ident">unused_must_use</span>)]</span>
 
-)]</span>
-<span class="attribute">#![<span class="ident">allow</span>(
-    <span class="comment">// library from dependencies have this clippy warnings. Not my code.</span>
-    <span class="comment">// Why is this bad: It will be more difficult for users to discover the purpose of the crate, </span>
-    <span class="comment">// and key information related to it.</span>
-    <span class="ident">clippy</span>::<span class="ident">cargo_common_metadata</span>,
-    <span class="comment">// Why is this bad : This bloats the size of targets, and can lead to confusing error messages when </span>
-    <span class="comment">// structs or traits are used interchangeably between different versions of a crate.</span>
-    <span class="ident">clippy</span>::<span class="ident">multiple_crate_versions</span>,
-    <span class="comment">// Why is this bad : As the edition guide says, it is highly unlikely that you work with any possible </span>
-    <span class="comment">// version of your dependency, and wildcard dependencies would cause unnecessary </span>
-    <span class="comment">// breakage in the ecosystem.</span>
-    <span class="ident">clippy</span>::<span class="ident">wildcard_dependencies</span>,
-    <span class="comment">// Rust is more idiomatic without return statement</span>
-    <span class="comment">// Why is this bad : Actually omitting the return keyword is idiomatic Rust code. </span>
-    <span class="comment">// Programmers coming from other languages might prefer the expressiveness of return. </span>
-    <span class="comment">// It’s possible to miss the last returning statement because the only difference </span>
-    <span class="comment">// is a missing ;. Especially in bigger code with multiple return paths having a </span>
-    <span class="comment">// return keyword makes it easier to find the corresponding statements.</span>
-    <span class="ident">clippy</span>::<span class="ident">implicit_return</span>,
-    <span class="comment">// I have private function inside a function. Self does not work there.</span>
-    <span class="comment">// Why is this bad: Unnecessary repetition. Mixed use of Self and struct name feels inconsistent.</span>
-    <span class="ident">clippy</span>::<span class="ident">use_self</span>,
-    <span class="comment">// Cannot add #[inline] to the start function with #[wasm_bindgen(start)]</span>
-    <span class="comment">// because then wasm-pack build --target web returns an error: export run not found </span>
-    <span class="comment">// Why is this bad: In general, it is not. Functions can be inlined across crates when that’s profitable </span>
-    <span class="comment">// as long as any form of LTO is used. When LTO is disabled, functions that are not #[inline] </span>
-    <span class="comment">// cannot be inlined across crates. Certain types of crates might intend for most of the </span>
-    <span class="comment">// methods in their public API to be able to be inlined across crates even when LTO is disabled. </span>
-    <span class="comment">// For these types of crates, enabling this lint might make sense. It allows the crate to </span>
-    <span class="comment">// require all exported methods to be #[inline] by default, and then opt out for specific </span>
-    <span class="comment">// methods where this might not make sense.</span>
-    <span class="ident">clippy</span>::<span class="ident">missing_inline_in_public_items</span>,
-    <span class="comment">// Why is this bad: This is only checked against overflow in debug builds. In some applications one wants explicitly checked, wrapping or saturating arithmetic.</span>
-    <span class="comment">// clippy::integer_arithmetic,</span>
-    <span class="comment">// Why is this bad: For some embedded systems or kernel development, it can be useful to rule out floating-point numbers.</span>
-    <span class="ident">clippy</span>::<span class="ident">float_arithmetic</span>,
-    <span class="comment">// Why is this bad : Doc is good. rustc has a MISSING_DOCS allowed-by-default lint for public members, but has no way to enforce documentation of private items. This lint fixes that.</span>
-    <span class="ident">clippy</span>::<span class="ident">doc_markdown</span>,
-    <span class="comment">// Why is this bad : Splitting the implementation of a type makes the code harder to navigate.</span>
-    <span class="ident">clippy</span>::<span class="ident">multiple_inherent_impl</span>,
-
-    <span class="ident">clippy</span>::<span class="ident">missing_docs_in_private_items</span>,
-)]</span>
-<span class="comment">// endregion</span>
+<span class="comment">// CONS: Unnecessary code.</span>
+<span class="comment">// PROS: more readable without knowing that the type is bool.</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy</span>::<span class="ident">bool_comparison</span>)]</span>
+<span class="comment">// endregion: Clippy</span>
 
 <span class="comment">// region: mod, extern and use statements</span>
 <span class="kw">mod</span> <span class="ident">count_lines_mod</span>;

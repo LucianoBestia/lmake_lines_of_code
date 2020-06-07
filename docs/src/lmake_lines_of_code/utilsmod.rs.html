@@ -40,8 +40,6 @@
 <span id="40">40</span>
 <span id="41">41</span>
 <span id="42">42</span>
-<span id="43">43</span>
-<span id="44">44</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! utilsmod.rs</span>
 
@@ -55,7 +53,7 @@
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">traverse_dir_with_exclude_dir</span>(
     <span class="ident">dir</span>: <span class="kw-2">&amp;</span><span class="ident">Path</span>,
     <span class="ident">find_file</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
-    <span class="ident">exclude_dirs</span>: <span class="kw-2">&amp;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
+    <span class="ident">exclude_dirs</span>: <span class="kw-2">&amp;</span>[<span class="ident">String</span>],
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">io</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span> {
     <span class="comment">// if the parameter is /*.rs, I can eliminate /*</span>
     <span class="kw">let</span> <span class="ident">find_file</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">find_file</span>.<span class="ident">replace</span>(<span class="string">&quot;/*&quot;</span>, <span class="string">&quot;&quot;</span>);
@@ -78,10 +76,8 @@
                     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">sub_v</span> <span class="op">=</span> <span class="ident">traverse_dir_with_exclude_dir</span>(<span class="kw-2">&amp;</span><span class="ident">path</span>, <span class="ident">find_file</span>, <span class="ident">exclude_dirs</span>)<span class="question-mark">?</span>;
                     <span class="ident">v</span>.<span class="ident">append</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">sub_v</span>);
                 }
-            } <span class="kw">else</span> {
-                <span class="kw">if</span> <span class="ident">str_path</span>.<span class="ident">ends_with</span>(<span class="ident">find_file</span>) {
-                    <span class="ident">v</span>.<span class="ident">push</span>(<span class="ident">str_path</span>.<span class="ident">to_string</span>());
-                }
+            } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">str_path</span>.<span class="ident">ends_with</span>(<span class="ident">find_file</span>) {
+                <span class="ident">v</span>.<span class="ident">push</span>(<span class="ident">str_path</span>.<span class="ident">to_string</span>());
             }
         }
     }
