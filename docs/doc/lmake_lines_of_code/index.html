@@ -1,0 +1,58 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `lmake_lines_of_code` crate."><meta name="keywords" content="rust, rustlang, rust-lang, lmake_lines_of_code"><title>lmake_lines_of_code - Rust</title><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../dark.css"><link rel="stylesheet" type="text/css" href="../light.css" id="themeStyle"><script src="../storage.js"></script><noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="shortcut icon" href="../favicon.ico"><style type="text/css">#crate-search{background-image:url("../down-arrow.svg");}</style></head><body class="rustdoc mod"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../lmake_lines_of_code/index.html'><div class='logo-container'><img src='../rust-logo.png' alt='logo'></div></a><p class='location'>Crate lmake_lines_of_code</p><div class="sidebar-elems"><a id='all-types' href='all.html'><p>See all lmake_lines_of_code's items</p></a><div class="block items"><ul><li><a href="#modules">Modules</a></li><li><a href="#functions">Functions</a></li></ul></div><p class='location'></p><script>window.sidebarCurrent = {name: 'lmake_lines_of_code', ty: 'mod', relpath: '../'};</script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><a id="settings-menu" href="../settings.html"><img src="../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><h1 class='fqn'><span class='out-of-band'><span id='render-detail'><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class='inner'>&#x2212;</span>]</a></span><a class='srclink' href='../src/lmake_lines_of_code/main.rs.html#2-174' title='goto source code'>[src]</a></span><span class='in-band'>Crate <a class="mod" href=''>lmake_lines_of_code</a></span></h1><div class='docblock'><h1 id="lmake_lines_of_code" class="section-header"><a href="#lmake_lines_of_code">lmake_lines_of_code</a></h1>
+<p>version: 2020.607.1321  date: 2020-06-07 authors: Luciano Bestia<br />
+<strong>Lines of code for Rust projects</strong></p>
+<table><thead><tr><th align="center">src code</th><th align="center">doc comments</th><th align="center">comments</th><th align="center">examples</th><th align="center">tests</th></tr></thead><tbody>
+<tr><td align="center">233</td><td align="center">73</td><td align="center">72</td><td align="center">0</td><td align="center">0</td></tr>
+</tbody></table>
+<h2 id="lines-of-code-for-rust-projects" class="section-header"><a href="#lines-of-code-for-rust-projects">Lines of code for Rust projects</a></h2>
+<p>Lines of code are not a &quot;perfect&quot; measurement of anything.<br />
+Anybody can write a very big number of lines of useless code and comments.<br />
+But for 95% of the cases they are good enough.<br />
+Most of the developers use some &quot;standard&quot; coding practices and that is quantifiable and comparable.<br />
+<br />
+The <code>src_code_lines</code> is the most important count.<br />
+That is actual code written for that project without  doc comments, comments, unit tests, integration tests and examples.<br />
+Sometimes is great to see a big number here. It means there was a lot of work invested. But other times we want to see a small number. It means the developer understands the problem very well and don't try to solve anything outside that scope.<br />
+<br />
+The <code>src_doc_comment_lines</code> counts doc comments. They will eventually become docs. The count of lines shows how many documentation is written.<br />
+<br />
+The <code>src_comment_lines</code> counts code comments. Code comments are important to understand the code. The count of lines shows how understandable is the code.<br />
+<br />
+The <code>tests_lines</code> counts lines in tests and shows how good is the code tested. Here are the unit tests and integration test combined.<br />
+<br />
+The <code>examples_lines</code> counts lines in examples and shows how good is explained how to use the code.</p>
+<h2 id="folder-and-file-structure" class="section-header"><a href="#folder-and-file-structure">Folder and file structure</a></h2>
+<p>The folder structure of a single Rust project is simple.<br />
+The project starts in the folder that contains cargo.toml.<br />
+The /src/ folder contains all the rust *.rs files.<br />
+The /tests/ folder contains integration tests.<br />
+The /examples/ folder contains examples.<br />
+Inside a rs file the doc comment line start with /// or //!.<br />
+The normal comments start with // or /!.<br />
+I will ignore the block comments. They are usually NOT used for comments, but to temporarily disable a piece of code. So I count this as code and not comments.<br />
+<br />
+The src/*.rs file can contain unit tests that start with #[cfg(test)]. I assume that these are always at the end of the file. There should not be any normal code after #[cfg(test)], only tests.<br />
+<br />
+All other files: md, toml, html, js, ... are not counted.</p>
+<h3 id="workspace" class="section-header"><a href="#workspace">Workspace</a></h3>
+<p>Workspaces have member projects, that are written in cargo.toml. The program counts lines of every project and sums them together.</p>
+<h2 id="install" class="section-header"><a href="#install">Install</a></h2>
+<p><code>cargo install lmake_lines_of_code</code></p>
+<h2 id="development" class="section-header"><a href="#development">Development</a></h2>
+<p>Documentation:<br />
+<a href="https://lucianobestia.github.io/lmake_lines_of_code">https://lucianobestia.github.io/lmake_lines_of_code</a><br />
+List of prepared make tasks for development: build, run, doc, publish,...<br />
+<code>clear; cargo make</code></p>
+<h2 id="cargo-crev-reviews-and-advisory" class="section-header"><a href="#cargo-crev-reviews-and-advisory">cargo crev reviews and advisory</a></h2>
+<p>It is recommended to always use <a href="https://github.com/crev-dev/cargo-crev">cargo-crev</a><br />
+to verify the trustworthiness of each of your dependencies, including this one.<br />
+<code>cargo crev verify</code><br />
+Please, spread this info.<br />
+On the web use url to read crate reviews example:<br />
+&lt;web.crev.dev/rust-reviews/crate/num-traits/&gt;  </p>
+</div><h2 id='modules' class='section-header'><a href="#modules">Modules</a></h2>
+<table><tr class='module-item'><td><a class="mod" href="count_lines_mod/index.html" title='lmake_lines_of_code::count_lines_mod mod'>count_lines_mod</a></td><td class='docblock-short'><p>count_lines_mod.rs</p>
+</td></tr><tr class='module-item'><td><a class="mod" href="utilsmod/index.html" title='lmake_lines_of_code::utilsmod mod'>utilsmod</a></td><td class='docblock-short'><p>utilsmod.rs</p>
+</td></tr></table><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
+<table><tr class='module-item'><td><a class="fn" href="fn.enable_ansi_support.html" title='lmake_lines_of_code::enable_ansi_support fn'>enable_ansi_support</a></td><td class='docblock-short'></td></tr><tr class='module-item'><td><a class="fn" href="fn.main.html" title='lmake_lines_of_code::main fn'>main</a></td><td class='docblock-short'><p>The program starts here.</p>
+</td></tr></table></section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../";window.currentCrate = "lmake_lines_of_code";</script><script src="../aliases.js"></script><script src="../main.js"></script><script defer src="../search-index.js"></script></body></html>

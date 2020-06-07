@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["enable_ansi_support",""],["main","The program starts here."]],"mod":[["count_lines_mod","count_lines_mod.rs"],["utilsmod","utilsmod.rs"]]});
