@@ -49,9 +49,11 @@ All other files: md, toml, html, js, ... are not counted.
 
 Workspaces have member projects, that are written in cargo.toml. The program counts lines of every project and sums them together.  
 
-## Install
+## Install and run
 
 `cargo install lmake_lines_of_code`  
+In the Rust project folder, where cargo.toml is:  
+`lmake_lines_of_code`
 
 ## Development
 
