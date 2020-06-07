@@ -10,7 +10,7 @@ use std::{fs, io, path::Path};
 pub fn traverse_dir_with_exclude_dir(
     dir: &Path,
     find_file: &str,
-    exclude_dirs: &Vec<String>,
+    exclude_dirs: &[String],
 ) -> io::Result<Vec<String>> {
     // if the parameter is /*.rs, I can eliminate /*
     let find_file = &find_file.replace("/*", "");
@@ -33,10 +33,8 @@ pub fn traverse_dir_with_exclude_dir(
                     let mut sub_v = traverse_dir_with_exclude_dir(&path, find_file, exclude_dirs)?;
                     v.append(&mut sub_v);
                 }
-            } else {
-                if str_path.ends_with(find_file) {
-                    v.push(str_path.to_string());
-                }
+            } else if str_path.ends_with(find_file) {
+                v.push(str_path.to_string());
             }
         }
     }

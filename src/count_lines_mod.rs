@@ -152,16 +152,18 @@ pub fn workspace_or_project_count_lines() -> LinesOfCode {
 }
 
 /// markdown can have nice tables
-pub fn as_md_table(lines_of_code:LinesOfCode)->String{
+pub fn as_md_table(lines_of_code: LinesOfCode) -> String {
     // I added an empty row to have the next row with different color from the header.
-    format!("
+    format!(
+        "
 | src code | doc comments | comments | examples | tests |
 | :------: | :----------: | :------: | :------: | :---: |
 |          |              |          |          |       |
 | {:^8   } | {:^12      } | {:^8   } | {:^8   } | {:^5} |",
-lines_of_code.src_code_lines,
-lines_of_code.src_doc_comment_lines,
-lines_of_code.src_comment_lines,
-lines_of_code.examples_lines,
-lines_of_code.tests_lines)
+        lines_of_code.src_code_lines,
+        lines_of_code.src_doc_comment_lines,
+        lines_of_code.src_comment_lines,
+        lines_of_code.examples_lines,
+        lines_of_code.tests_lines
+    )
 }
