@@ -62,6 +62,12 @@ Documentation:\
 List of prepared make tasks for development: build, run, doc, publish,...\
 `clear; cargo make`  
 
+## TODO
+
+Include the markdown text in readme.md between the placeholders:  
+`[comment]: # (lmake_lines_of_code start)`  
+`[comment]: # (lmake_lines_of_code end)`  
+
 ## cargo crev reviews and advisory
 
 It is recommended to always use [cargo-crev](https://github.com/crev-dev/cargo-crev)\
