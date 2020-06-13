@@ -192,6 +192,24 @@
 <span id="192">192</span>
 <span id="193">193</span>
 <span id="194">194</span>
+<span id="195">195</span>
+<span id="196">196</span>
+<span id="197">197</span>
+<span id="198">198</span>
+<span id="199">199</span>
+<span id="200">200</span>
+<span id="201">201</span>
+<span id="202">202</span>
+<span id="203">203</span>
+<span id="204">204</span>
+<span id="205">205</span>
+<span id="206">206</span>
+<span id="207">207</span>
+<span id="208">208</span>
+<span id="209">209</span>
+<span id="210">210</span>
+<span id="211">211</span>
+<span id="212">212</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! count_lines_mod.rs</span>
 
@@ -199,11 +217,11 @@
 
 <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused_imports</span>)]</span>
 <span class="kw">use</span> <span class="ident">ansi_term</span>::<span class="ident">Colour</span>::{<span class="ident">Green</span>, <span class="ident">Yellow</span>};
+<span class="kw">use</span> <span class="ident">regex</span>::<span class="ident">Regex</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fs</span>::<span class="ident">File</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">io</span>::{<span class="ident">BufRead</span>, <span class="ident">BufReader</span>};
 <span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">env</span>, <span class="ident">fs</span>, <span class="ident">path</span>::<span class="ident">Path</span>};
 <span class="kw">use</span> <span class="ident">unwrap</span>::<span class="ident">unwrap</span>;
-<span class="kw">use</span> <span class="ident">regex</span>::<span class="ident">Regex</span>;
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">Default</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">LinesOfCode</span> {
@@ -366,26 +384,44 @@
     )
 }
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">as_shield_badges</span>(<span class="ident">lines_of_code</span>: <span class="kw-2">&amp;</span><span class="ident">LinesOfCode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">String</span> {
-
     <span class="comment">// find the repo name</span>
-    <span class="comment">// $ git remote -v  </span>
+    <span class="comment">// $ git remote -v</span>
     <span class="comment">// returns</span>
     <span class="comment">// origin  git@github.com:LucianoBestia/lmake_lines_of_code.git (fetch)</span>
-    <span class="kw">let</span> <span class="ident">output</span> <span class="op">=</span> <span class="ident">std</span>::<span class="ident">process</span>::<span class="ident">Command</span>::<span class="ident">new</span>(<span class="string">&quot;git&quot;</span>).<span class="ident">arg</span>(<span class="string">&quot;remote&quot;</span>).<span class="ident">arg</span>(<span class="string">&quot;-v&quot;</span>).<span class="ident">output</span>().<span class="ident">unwrap</span>();
+    <span class="kw">let</span> <span class="ident">output</span> <span class="op">=</span> <span class="ident">std</span>::<span class="ident">process</span>::<span class="ident">Command</span>::<span class="ident">new</span>(<span class="string">&quot;git&quot;</span>)
+        .<span class="ident">arg</span>(<span class="string">&quot;remote&quot;</span>)
+        .<span class="ident">arg</span>(<span class="string">&quot;-v&quot;</span>)
+        .<span class="ident">output</span>()
+        .<span class="ident">unwrap</span>();
     <span class="kw">let</span> <span class="ident">output</span> <span class="op">=</span> <span class="ident">String</span>::<span class="ident">from_utf8_lossy</span>(<span class="kw-2">&amp;</span><span class="ident">output</span>.<span class="ident">stdout</span>);
 
     <span class="comment">// regex capture 3 groups: website, user_name and repo_name</span>
-    <span class="kw">let</span> <span class="ident">reg</span> <span class="op">=</span> <span class="macro">unwrap</span><span class="macro">!</span>( <span class="ident">Regex</span>::<span class="ident">new</span>(<span class="string">r#&quot;@(.*?):(.*?)/(.*?).git&quot;#</span>));
-    <span class="kw">let</span> <span class="ident">cap</span> <span class="op">=</span> <span class="macro">unwrap</span><span class="macro">!</span>( <span class="ident">reg</span>.<span class="ident">captures</span>(<span class="kw-2">&amp;</span><span class="ident">output</span>));
-    <span class="kw">let</span> <span class="ident">link</span> <span class="op">=</span> <span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;https://{}/{}/{}/&quot;</span>,<span class="kw-2">&amp;</span><span class="ident">cap</span>[<span class="number">1</span>],<span class="kw-2">&amp;</span><span class="ident">cap</span>[<span class="number">2</span>],<span class="kw-2">&amp;</span><span class="ident">cap</span>[<span class="number">3</span>]);
+    <span class="kw">let</span> <span class="ident">reg</span> <span class="op">=</span> <span class="macro">unwrap</span><span class="macro">!</span>(<span class="ident">Regex</span>::<span class="ident">new</span>(<span class="string">r#&quot;@(.*?):(.*?)/(.*?).git&quot;#</span>));
+    <span class="kw">let</span> <span class="ident">cap</span> <span class="op">=</span> <span class="macro">unwrap</span><span class="macro">!</span>(<span class="ident">reg</span>.<span class="ident">captures</span>(<span class="kw-2">&amp;</span><span class="ident">output</span>));
+    <span class="kw">let</span> <span class="ident">link</span> <span class="op">=</span> <span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;https://{}/{}/{}/&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">cap</span>[<span class="number">1</span>], <span class="kw-2">&amp;</span><span class="ident">cap</span>[<span class="number">2</span>], <span class="kw-2">&amp;</span><span class="ident">cap</span>[<span class="number">3</span>]);
 
-    <span class="kw">let</span> <span class="ident">src_code_lines</span> <span class="op">=</span> <span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-{}-green.svg)]({})&quot;</span>,<span class="ident">lines_of_code</span>.<span class="ident">src_code_lines</span>,<span class="ident">link</span>);
+    <span class="kw">let</span> <span class="ident">src_code_lines</span> <span class="op">=</span> <span class="macro">format</span><span class="macro">!</span>(
+        <span class="string">&quot;[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-{}-green.svg)]({})&quot;</span>,
+        <span class="ident">lines_of_code</span>.<span class="ident">src_code_lines</span>, <span class="ident">link</span>
+    );
     <span class="kw">let</span> <span class="ident">src_doc_comment_lines</span> <span class="op">=</span> <span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;[![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-{}-blue.svg)]({})&quot;</span>,<span class="ident">lines_of_code</span>.<span class="ident">src_doc_comment_lines</span>,<span class="ident">link</span>);
-    <span class="kw">let</span> <span class="ident">src_comment_lines</span> <span class="op">=</span> <span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-{}-purple.svg)]({})&quot;</span>,<span class="ident">lines_of_code</span>.<span class="ident">src_comment_lines</span>,<span class="ident">link</span>);
-    <span class="kw">let</span> <span class="ident">example_lines</span> <span class="op">=</span> <span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;[![Lines in examples](https://img.shields.io/badge/Lines_in_examples-{}-yellow.svg)]({})&quot;</span>,<span class="ident">lines_of_code</span>.<span class="ident">examples_lines</span>,<span class="ident">link</span>);
-    <span class="kw">let</span> <span class="ident">tests_lines</span> <span class="op">=</span> <span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;[![Lines in tests](https://img.shields.io/badge/Lines_in_tests-{}-orange.svg)]({})&quot;</span>,<span class="ident">lines_of_code</span>.<span class="ident">tests_lines</span>,<span class="ident">link</span>);
+    <span class="kw">let</span> <span class="ident">src_comment_lines</span> <span class="op">=</span> <span class="macro">format</span><span class="macro">!</span>(
+        <span class="string">&quot;[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-{}-purple.svg)]({})&quot;</span>,
+        <span class="ident">lines_of_code</span>.<span class="ident">src_comment_lines</span>, <span class="ident">link</span>
+    );
+    <span class="kw">let</span> <span class="ident">example_lines</span> <span class="op">=</span> <span class="macro">format</span><span class="macro">!</span>(
+        <span class="string">&quot;[![Lines in examples](https://img.shields.io/badge/Lines_in_examples-{}-yellow.svg)]({})&quot;</span>,
+        <span class="ident">lines_of_code</span>.<span class="ident">examples_lines</span>, <span class="ident">link</span>
+    );
+    <span class="kw">let</span> <span class="ident">tests_lines</span> <span class="op">=</span> <span class="macro">format</span><span class="macro">!</span>(
+        <span class="string">&quot;[![Lines in tests](https://img.shields.io/badge/Lines_in_tests-{}-orange.svg)]({})&quot;</span>,
+        <span class="ident">lines_of_code</span>.<span class="ident">tests_lines</span>, <span class="ident">link</span>
+    );
     <span class="comment">//return</span>
-    <span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;{}\n{}\n{}\n{}\n{}\n&quot;</span>,<span class="ident">src_code_lines</span>,<span class="ident">src_doc_comment_lines</span>,<span class="ident">src_comment_lines</span>,<span class="ident">example_lines</span>, <span class="ident">tests_lines</span>)
+    <span class="macro">format</span><span class="macro">!</span>(
+        <span class="string">&quot;{}\n{}\n{}\n{}\n{}\n&quot;</span>,
+        <span class="ident">src_code_lines</span>, <span class="ident">src_doc_comment_lines</span>, <span class="ident">src_comment_lines</span>, <span class="ident">example_lines</span>, <span class="ident">tests_lines</span>
+    )
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../";window.currentCrate = "lmake_lines_of_code";</script><script src="../../aliases.js"></script><script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script><script defer src="../../search-index.js"></script></body></html>

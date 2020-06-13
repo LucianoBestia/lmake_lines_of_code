@@ -101,7 +101,7 @@ skip_core_tasks = true
     clear = true
     script= [
         "echo $ lmake_readme",
-        # copy data from cargo.toml to readme.md, then include text from readme.md into *.rs doc comments
+        # copy data from cargo.toml to README.md, then include text from README.md into *.rs doc comments
         "lmake_readme",
         "echo $ cargo doc --no-deps --document-private-items",
         # create doc from doc comments
@@ -203,7 +203,7 @@ script= [
 "echo 06a. or cargo make release_and_run - build and run release version, increment semver patch incargo.toml",
 "echo 07. cargo makr run_rel0 - run the release build",
 "echo ",
-"echo 08. cargo make doc - includes from cargo.toml to readme.md and from readme.md to main.rs or lib.rs, generates doc and copies to docs folder, exports codetour to .md.",
+"echo 08. cargo make doc - includes from cargo.toml to README.md and from README.md to main.rs or lib.rs, generates doc and copies to docs folder, exports codetour to .md.",
 "echo 09. cargo make fmt commit_message - cargo fmt and git commit ",
 "echo 10. cargo make sshadd - run only once - adds identity to ssh-agent for git and publish",
 "echo 11. cargo make gitpush - git push",
@@ -247,4 +247,3 @@ script = [
     "echo after successful fmt and git commit, run $ cargo make gitpush",
     "echo if the fmt makes changes, just run the same command again."
 ]
-

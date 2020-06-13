@@ -1,7 +1,7 @@
-// region: lmake_readme include "readme.md" //! A
+// region: lmake_readme include "README.md" //! A
 //! # lmake_lines_of_code  
 //!
-//! ***version: 2020.613.622  date: 2020-06-13 authors: Luciano Bestia***  
+//! ***version: 2020.613.1337  date: 2020-06-13 authors: Luciano Bestia***  
 //! **Lines of code for Rust projects**
 //!
 //!
@@ -10,11 +10,14 @@
 //! |  lines   |     lines    |   lines  |   lines  | lines |
 //! |   233    |      88      |    50    |    0     |   0   |
 //!
-//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-233-green.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
-//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-88-blue.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
-//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-50-purple.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
+//! [comment]: # (lmake_lines_of_code start)
+//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-282-green.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
+//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-106-blue.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
+//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-51-purple.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
 //! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
 //! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-0-orange.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
+//!
+//! [comment]: # (lmake_lines_of_code end)
 //!
 //! ## Lines of code for Rust projects
 //!
@@ -58,7 +61,7 @@
 //! ## Output
 //!
 //! The output is markdown text for a table and markdown text for shield badges.\
-//! Just copy/paste it into readme.md.  
+//! Just copy/paste it into README.md.  
 //!
 //! ## Install and run
 //!
@@ -73,27 +76,17 @@
 //! List of prepared make tasks for development: build, run, doc, publish,...\
 //! `clear; cargo make`  
 //!
-//! ## TODO
-//!
-//! Include the markdown text in readme.md between the placeholders:  
-//! `[comment]: # (lmake_lines_of_code start)`  
-//! `[comment]: # (lmake_lines_of_code end)`  
-//!
 //! ## CREV - Rust code reviews - Raise awareness
 //!
 //! Please, spread this info.\
 //! Open source code needs a community effort to express trustworthiness.\
-//! Start with reading the reviews of the crates you use.\
-//! example: [web.crev.dev/rust-reviews/crate/num-traits/](https://web.crev.dev/rust-reviews/crate/num-traits/)  
+//! Start with reading the reviews of the crates you use.Example: [web.crev.dev/rust-reviews/crate/num-traits/](https://web.crev.dev/rust-reviews/crate/num-traits/)  
 //! Than install the CLI [cargo-crev](https://github.com/crev-dev/cargo-crev)\. Read the [Getting Started guide](https://github.com/crev-dev/cargo-crev/blob/master/cargo-crev/src/doc/getting_started.md).
-//! On your Rust project, verify the trustworthiness of all dependencies, including transient dependencies.\
-//! `cargo crev verify`\
-//! Write a new review for the crates you trust.\
-//! Or for the crate versions you think are dangerous.\
+//! On your Rust project, verify the trustworthiness of all dependencies, including transient dependencies with `cargo crev verify`\
+//! Write a new review for the crates you trust. Or for the crate versions you think are dangerous.\
 //! Help other developers, inform them and share your opinion.\
 //! Use this webpage to help you: [web.crev.dev/rust-reviews/review_new](https::/web.crev.dev/rust-reviews/review_new)  
-//!
-// endregion: lmake_readme include "readme.md" //! A
+// endregion: lmake_readme include "README.md" //! A
 
 // region: Clippy
 #![deny(unused_must_use)]
@@ -105,9 +98,11 @@
 
 // region: mod, extern and use statements
 mod count_lines_mod;
+mod readme_include_mod;
 mod utilsmod;
 
 use count_lines_mod::*;
+use readme_include_mod::*;
 
 //use clap::*;
 //use unwrap::unwrap;
@@ -135,7 +130,9 @@ fn main() {
     //let v = one_project_count_lines();
     let v = workspace_or_project_count_lines();
     println!("{}", as_md_table(&v));
-    println!("{}", as_shield_badges(&v))
+    let text_to_include = as_shield_badges(&v);
+    println!("{}", &text_to_include);
+    readme_include(&text_to_include);
 }
 
 // region: different function code for Linux and Windows

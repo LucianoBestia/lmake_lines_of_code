@@ -1,7 +1,7 @@
 # lmake_lines_of_code  
 
 [comment]: # (lmake_readme cargo.toml data start)
-***version: 2020.613.622  date: 2020-06-13 authors: Luciano Bestia***  
+***version: 2020.613.1337  date: 2020-06-13 authors: Luciano Bestia***  
 **Lines of code for Rust projects**
 
 [comment]: # (lmake_readme cargo.toml data end)
@@ -11,11 +11,14 @@
 |  lines   |     lines    |   lines  |   lines  | lines |
 |   233    |      88      |    50    |    0     |   0   |
 
-[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-233-green.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
-[![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-88-blue.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
-[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-50-purple.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
+[comment]: # (lmake_lines_of_code start)
+[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-282-green.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
+[![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-106-blue.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
+[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-51-purple.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
 [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
 [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-0-orange.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
+
+[comment]: # (lmake_lines_of_code end)
 
 ## Lines of code for Rust projects
 
@@ -59,7 +62,7 @@ The program counts lines of every project and sums them together.
 ## Output
 
 The output is markdown text for a table and markdown text for shield badges.\
-Just copy/paste it into readme.md.  
+Just copy/paste it into README.md.  
 
 ## Install and run
 
@@ -73,12 +76,6 @@ Documentation:\
 <https://lucianobestia.github.io/lmake_lines_of_code>\
 List of prepared make tasks for development: build, run, doc, publish,...\
 `clear; cargo make`  
-
-## TODO
-
-Include the markdown text in readme.md between the placeholders:  
-`[comment]: # (lmake_lines_of_code start)`  
-`[comment]: # (lmake_lines_of_code end)`  
 
 ## CREV - Rust code reviews - Raise awareness
 
