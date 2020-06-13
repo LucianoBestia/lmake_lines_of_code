@@ -4,11 +4,11 @@ use crate::utilsmod::*;
 
 #[allow(unused_imports)]
 use ansi_term::Colour::{Green, Yellow};
+use regex::Regex;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 use std::{env, fs, path::Path};
 use unwrap::unwrap;
-use regex::Regex;
 
 #[derive(Clone, Debug, Default)]
 pub struct LinesOfCode {
@@ -171,24 +171,42 @@ pub fn as_md_table(lines_of_code: &LinesOfCode) -> String {
     )
 }
 pub fn as_shield_badges(lines_of_code: &LinesOfCode) -> String {
-
     // find the repo name
-    // $ git remote -v  
+    // $ git remote -v
     // returns
     // origin  git@github.com:LucianoBestia/lmake_lines_of_code.git (fetch)
-    let output = std::process::Command::new("git").arg("remote").arg("-v").output().unwrap();
+    let output = std::process::Command::new("git")
+        .arg("remote")
+        .arg("-v")
+        .output()
+        .unwrap();
     let output = String::from_utf8_lossy(&output.stdout);
 
     // regex capture 3 groups: website, user_name and repo_name
-    let reg = unwrap!( Regex::new(r#"@(.*?):(.*?)/(.*?).git"#));
-    let cap = unwrap!( reg.captures(&output));
-    let link = format!("https://{}/{}/{}/",&cap[1],&cap[2],&cap[3]);
+    let reg = unwrap!(Regex::new(r#"@(.*?):(.*?)/(.*?).git"#));
+    let cap = unwrap!(reg.captures(&output));
+    let link = format!("https://{}/{}/{}/", &cap[1], &cap[2], &cap[3]);
 
-    let src_code_lines = format!("[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-{}-green.svg)]({})",lines_of_code.src_code_lines,link);
+    let src_code_lines = format!(
+        "[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-{}-green.svg)]({})",
+        lines_of_code.src_code_lines, link
+    );
     let src_doc_comment_lines = format!("[![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-{}-blue.svg)]({})",lines_of_code.src_doc_comment_lines,link);
-    let src_comment_lines = format!("[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-{}-purple.svg)]({})",lines_of_code.src_comment_lines,link);
-    let example_lines = format!("[![Lines in examples](https://img.shields.io/badge/Lines_in_examples-{}-yellow.svg)]({})",lines_of_code.examples_lines,link);
-    let tests_lines = format!("[![Lines in tests](https://img.shields.io/badge/Lines_in_tests-{}-orange.svg)]({})",lines_of_code.tests_lines,link);
+    let src_comment_lines = format!(
+        "[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-{}-purple.svg)]({})",
+        lines_of_code.src_comment_lines, link
+    );
+    let example_lines = format!(
+        "[![Lines in examples](https://img.shields.io/badge/Lines_in_examples-{}-yellow.svg)]({})",
+        lines_of_code.examples_lines, link
+    );
+    let tests_lines = format!(
+        "[![Lines in tests](https://img.shields.io/badge/Lines_in_tests-{}-orange.svg)]({})",
+        lines_of_code.tests_lines, link
+    );
     //return
-    format!("{}\n{}\n{}\n{}\n{}\n",src_code_lines,src_doc_comment_lines,src_comment_lines,example_lines, tests_lines)
+    format!(
+        "{}\n{}\n{}\n{}\n{}\n",
+        src_code_lines, src_doc_comment_lines, src_comment_lines, example_lines, tests_lines
+    )
 }
