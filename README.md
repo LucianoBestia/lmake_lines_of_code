@@ -84,13 +84,9 @@ Include the markdown text in readme.md between the placeholders:
 
 Please, spread this info.\
 Open source code needs a community effort to express trustworthiness.\
-Start with reading the reviews of the crates you use.\
-example: [web.crev.dev/rust-reviews/crate/num-traits/](https://web.crev.dev/rust-reviews/crate/num-traits/)  
+Start with reading the reviews of the crates you use.Example: [web.crev.dev/rust-reviews/crate/num-traits/](https://web.crev.dev/rust-reviews/crate/num-traits/)  
 Than install the CLI [cargo-crev](https://github.com/crev-dev/cargo-crev)\. Read the [Getting Started guide](https://github.com/crev-dev/cargo-crev/blob/master/cargo-crev/src/doc/getting_started.md).
-On your Rust project, verify the trustworthiness of all dependencies, including transient dependencies.\
-`cargo crev verify`\
-Write a new review for the crates you trust.\
-Or for the crate versions you think are dangerous.\
+On your Rust project, verify the trustworthiness of all dependencies, including transient dependencies with `cargo crev verify`\
+Write a new review for the crates you trust. Or for the crate versions you think are dangerous.\
 Help other developers, inform them and share your opinion.\
 Use this webpage to help you: [web.crev.dev/rust-reviews/review_new](https::/web.crev.dev/rust-reviews/review_new)  
-
