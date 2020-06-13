@@ -1,14 +1,20 @@
 // region: lmake_readme include "readme.md" //! A
 //! # lmake_lines_of_code  
 //!
-//! ***version: 2020.607.1456  date: 2020-06-07 authors: Luciano Bestia***  
+//! ***version: 2020.613.622  date: 2020-06-13 authors: Luciano Bestia***  
 //! **Lines of code for Rust projects**
 //!
 //!
 //! | src code | doc comments | comments | examples | tests |
 //! | :------: | :----------: | :------: | :------: | :---: |
-//! |      |            |        |         |     |
-//! |   233    |      73      |    72    |    0     |   0   |
+//! |  lines   |     lines    |   lines  |   lines  | lines |
+//! |   233    |      88      |    50    |    0     |   0   |
+//!
+//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-233-green.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
+//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-88-blue.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
+//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-50-purple.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
+//! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
+//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-0-orange.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
 //!
 //! ## Lines of code for Rust projects
 //!
@@ -46,7 +52,13 @@
 //!
 //! ### Workspace
 //!
-//! Workspaces have member projects, that are written in cargo.toml. The program counts lines of every project and sums them together.  
+//! Workspaces have member projects, that are written in cargo.toml.\
+//! The program counts lines of every project and sums them together.  
+//!
+//! ## Output
+//!
+//! The output is markdown text for a table and markdown text for shield badges.\
+//! Just copy/paste it into readme.md.  
 //!
 //! ## Install and run
 //!
@@ -67,14 +79,20 @@
 //! `[comment]: # (lmake_lines_of_code start)`  
 //! `[comment]: # (lmake_lines_of_code end)`  
 //!
-//! ## cargo crev reviews and advisory
+//! ## CREV - Rust code reviews - Raise awareness
 //!
-//! It is recommended to always use [cargo-crev](https://github.com/crev-dev/cargo-crev)\
-//! to verify the trustworthiness of each of your dependencies, including this one.\
-//! `cargo crev verify`\
 //! Please, spread this info.\
-//! On the web use url to read crate reviews example:\
-//! <web.crev.dev/rust-reviews/crate/num-traits/>  
+//! Open source code needs a community effort to express trustworthiness.\
+//! Start with reading the reviews of the crates you use.\
+//! example: [web.crev.dev/rust-reviews/crate/num-traits/](https://web.crev.dev/rust-reviews/crate/num-traits/)  
+//! Than install the CLI [cargo-crev](https://github.com/crev-dev/cargo-crev)\. Read the [Getting Started guide](https://github.com/crev-dev/cargo-crev/blob/master/cargo-crev/src/doc/getting_started.md).
+//! On your Rust project, verify the trustworthiness of all dependencies, including transient dependencies.\
+//! `cargo crev verify`\
+//! Write a new review for the crates you trust.\
+//! Or for the crate versions you think are dangerous.\
+//! Help other developers, inform them and share your opinion.\
+//! Use this webpage to help you: [web.crev.dev/rust-reviews/review_new](https::/web.crev.dev/rust-reviews/review_new)  
+//!
 // endregion: lmake_readme include "readme.md" //! A
 
 // region: Clippy
@@ -116,7 +134,8 @@ fn main() {
         .get_matches();
     //let v = one_project_count_lines();
     let v = workspace_or_project_count_lines();
-    println!("{}", as_md_table(v));
+    println!("{}", as_md_table(&v));
+    println!("{}", as_shield_badges(&v))
 }
 
 // region: different function code for Linux and Windows
