@@ -1,4 +1,4 @@
-name: RustGitHubActions
+name: RustAction
 
 on:
   push:

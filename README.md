@@ -19,7 +19,7 @@
 
 [comment]: # (lmake_lines_of_code end)
 
-[![crates.io](https://meritbadge.herokuapp.com/lmake_lines_of_code)](https://crates.io/crates/lmake_lines_of_code) [![Documentation](https://docs.rs/lmake_lines_of_code/badge.svg)](https://docs.rs/lmake_lines_of_code/) [![crev reviews](https://web.crev.dev/rust-reviews/badge/crev_count/lmake_lines_of_code.svg)](https://web.crev.dev/rust-reviews/crate/lmake_lines_of_code/) [![Lib.rs](https://img.shields.io/badge/Lib.rs-rust-orange.svg)](https://lib.rs/crates/lmake_lines_of_code/) [![Licence](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/blob/master/LICENSE) [![Rust](https://github.com/LucianoBestia/lmake_lines_of_code/workflows/Rust/badge.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
+[![crates.io](https://meritbadge.herokuapp.com/lmake_lines_of_code)](https://crates.io/crates/lmake_lines_of_code) [![Documentation](https://docs.rs/lmake_lines_of_code/badge.svg)](https://docs.rs/lmake_lines_of_code/) [![crev reviews](https://web.crev.dev/rust-reviews/badge/crev_count/lmake_lines_of_code.svg)](https://web.crev.dev/rust-reviews/crate/lmake_lines_of_code/) [![Lib.rs](https://img.shields.io/badge/Lib.rs-rust-orange.svg)](https://lib.rs/crates/lmake_lines_of_code/) [![Licence](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/blob/master/LICENSE) [![Rust](https://github.com/LucianoBestia/lmake_lines_of_code/workflows/RustAction/badge.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
 
 ## Lines of code for Rust projects
 
