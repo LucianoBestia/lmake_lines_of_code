@@ -6,11 +6,6 @@
 
 [comment]: # (lmake_readme cargo.toml data end)
 
-| src code | doc comments | comments | examples | tests |
-| :------: | :----------: | :------: | :------: | :---: |
-|  lines   |     lines    |   lines  |   lines  | lines |
-|   233    |      88      |    50    |    0     |   0   |
-
 [comment]: # (lmake_lines_of_code start)
 [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-282-green.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
 [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-106-blue.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
