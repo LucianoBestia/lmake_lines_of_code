@@ -96,7 +96,7 @@ If you don't use git:
 ## Development
 
 Repository:  
-<https://github.com/LucianoBestia/lmake_lines_of_code>
+<https://github.com/LucianoBestia/lmake_lines_of_code>  
 Documentation:\
 <https://lucianobestia.github.io/lmake_lines_of_code>\
 List of prepared make tasks for development: build, run, doc, publish,...\
