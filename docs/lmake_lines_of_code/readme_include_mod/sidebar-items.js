@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["readme_include",""]]});
+initSidebarItems({"fn":[["readme_include","Includes (writes, modifies) the shield badge code into README.md file."]]});

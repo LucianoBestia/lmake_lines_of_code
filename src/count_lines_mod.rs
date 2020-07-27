@@ -1,4 +1,5 @@
-//! count_lines_mod.rs
+// count_lines_mod.rs
+//! Module with fn to count rust lines.
 
 use crate::utilsmod::*;
 
@@ -10,6 +11,7 @@ use std::io::{BufRead, BufReader};
 use std::{env, fs, path::Path};
 use unwrap::unwrap;
 
+/// Struct that contains 4 types of lines count: code, doc comments, comments, test and examples.
 #[derive(Clone, Debug, Default)]
 pub struct LinesOfCode {
     /// lines with code in srs files
@@ -24,6 +26,7 @@ pub struct LinesOfCode {
     pub examples_lines: usize,
 }
 
+/// private function. Use public workspace_or_project_count_lines().
 fn one_project_count_lines(project_path: &Path) -> LinesOfCode {
     let mut lines_of_code = LinesOfCode::default();
 
@@ -123,6 +126,18 @@ struct Workspace {
     members: Vec<String>,
 }
 
+/// Returns the struct LinesOfCode for 4 types of lines:
+/// code, doc comments, comments, test and examples.
+/// Automatically detects if this is a workspace or single rust project.
+///
+/// # Example
+///
+/// ```
+/// use lmake_lines_of_code::*;
+///
+/// let v = workspace_or_project_count_lines();
+/// dbg!(&v);
+/// ```
 pub fn workspace_or_project_count_lines() -> LinesOfCode {
     let mut lines_of_code = LinesOfCode::default();
 
@@ -152,7 +167,21 @@ pub fn workspace_or_project_count_lines() -> LinesOfCode {
     lines_of_code
 }
 
-/// markdown can have nice tables
+/// Returns a string with the code for a markdown table with count of lines.
+///
+/// Some websites render a beautiful table, but others render ugly tables.
+/// Use badges instead.
+///
+/// # Example
+///
+/// ```
+/// use lmake_lines_of_code::*;
+///
+/// let v = workspace_or_project_count_lines();
+/// let badges = as_md_table(&v);
+///
+/// println!("{}", badges);
+/// ```
 pub fn as_md_table(lines_of_code: &LinesOfCode) -> String {
     // I added an empty row to have the next row with different color from the header.
     format!(
@@ -170,22 +199,67 @@ pub fn as_md_table(lines_of_code: &LinesOfCode) -> String {
         lines_of_code.tests_lines
     )
 }
-pub fn as_shield_badges(lines_of_code: &LinesOfCode) -> String {
-    // find the repo name
-    // $ git remote -v
-    // returns
-    // origin  git@github.com:LucianoBestia/lmake_lines_of_code.git (fetch)
-    let output = std::process::Command::new("git")
-        .arg("remote")
-        .arg("-v")
-        .output()
-        .unwrap();
-    let output = String::from_utf8_lossy(&output.stdout);
-
-    // regex capture 3 groups: website, user_name and repo_name
-    let reg = unwrap!(Regex::new(r#"@(.*?):(.*?)/(.*?).git"#));
-    let cap = unwrap!(reg.captures(&output));
-    let link = format!("https://{}/{}/{}/", &cap[1], &cap[2], &cap[3]);
+/// Returns a string with the markdown code for 4 shield badges.
+///
+/// Every badge has the link to the url given as first CLI argument
+/// or automatically finds out the github git remote repository url.
+///
+/// # Example
+///
+/// ```
+/// use lmake_lines_of_code::*;
+///
+/// let v = workspace_or_project_count_lines();
+/// let badges = as_shield_badges(&v,"", false,false);
+///
+/// println!("{}", badges);
+/// ```
+pub fn as_shield_badges(
+    lines_of_code: &LinesOfCode,
+    link: &str,
+    is_testing_no_git: bool,
+    is_testing_git_dummy_result: bool,
+) -> String {
+    println!("as_shield_badges() start");
+    let cmd = if is_testing_no_git {
+        "produce-an-error"
+    } else {
+        "git"
+    };
+    // use the CLI argument or automatically find GitHub git remote repository
+    let link = if link.is_empty() {
+        // find the repo name
+        // $ git remote -v
+        // returns
+        // origin  git@github.com:LucianoBestia/lmake_lines_of_code.git (fetch)
+        if let Ok(output) = std::process::Command::new(cmd)
+            .arg("remote")
+            .arg("-v")
+            .output()
+        {
+            let output = if is_testing_git_dummy_result {
+                // for testing I need a predictable result
+                "origin  git@github.com:LucianoBestia/lmake_lines_of_code.git (fetch)".to_string()
+            } else {
+                String::from_utf8_lossy(&output.stdout).to_string()
+            };
+            if output.is_empty() {
+                String::new()
+            } else {
+                println!("{}", &output);
+                // regex capture 3 groups: website, user_name and repo_name
+                let reg = unwrap!(Regex::new(r#"@(.*?):(.*?)/(.*?).git"#));
+                let cap = unwrap!(reg.captures(&output));
+                format!("https://{}/{}/{}/", &cap[1], &cap[2], &cap[3])
+            }
+        } else {
+            println!("git error");
+            String::new()
+        }
+    } else {
+        println!("link parameter {}", link);
+        link.to_string()
+    };
 
     let src_code_lines = format!(
         "[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-{}-green.svg)]({})",
@@ -209,4 +283,40 @@ pub fn as_shield_badges(lines_of_code: &LinesOfCode) -> String {
         "{}\n{}\n{}\n{}\n{}\n",
         src_code_lines, src_doc_comment_lines, src_comment_lines, example_lines, tests_lines
     )
+}
+
+#[cfg(test)]
+mod test {
+    use super::*;
+    fn create_struct_for_test() -> LinesOfCode {
+        //return
+        LinesOfCode {
+            src_code_lines: 11,
+            src_doc_comment_lines: 22,
+            src_comment_lines: 33,
+            tests_lines: 44,
+            examples_lines: 55,
+        }
+    }
+    #[test]
+    fn test_01_badge_with_arg() {
+        let v = create_struct_for_test();
+        let badges = as_shield_badges(&v, "http://website", false, false);
+
+        assert_eq!(badges,"[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-11-green.svg)](http://website)\n[![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-22-blue.svg)](http://website)\n[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-33-purple.svg)](http://website)\n[![Lines in examples](https://img.shields.io/badge/Lines_in_examples-55-yellow.svg)](http://website)\n[![Lines in tests](https://img.shields.io/badge/Lines_in_tests-44-orange.svg)](http://website)\n");
+    }
+    #[test]
+    fn test_02_badge_no_git_no_arg() {
+        let v = create_struct_for_test();
+        let badges = as_shield_badges(&v, "", true, false);
+
+        assert_eq!(badges,"[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-11-green.svg)]()\n[![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-22-blue.svg)]()\n[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-33-purple.svg)]()\n[![Lines in examples](https://img.shields.io/badge/Lines_in_examples-55-yellow.svg)]()\n[![Lines in tests](https://img.shields.io/badge/Lines_in_tests-44-orange.svg)]()\n");
+    }
+    #[test]
+    fn test_03_badge_with_git_no_arg() {
+        let v = create_struct_for_test();
+        let badges = as_shield_badges(&v, "", false, true);
+
+        assert_eq!(badges,"[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-11-green.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)\n[![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-22-blue.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)\n[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-33-purple.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)\n[![Lines in examples](https://img.shields.io/badge/Lines_in_examples-55-yellow.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)\n[![Lines in tests](https://img.shields.io/badge/Lines_in_tests-44-orange.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)\n");
+    }
 }

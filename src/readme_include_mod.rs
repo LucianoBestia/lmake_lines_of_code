@@ -1,10 +1,20 @@
 // readme_include_mod.rs
+//! Includes (writes, modifies) the shield badge code into README.md file.
 
 #[allow(unused_imports)]
 use ansi_term::Colour::{Green, Red, Yellow};
 use std::fs;
 use unwrap::unwrap;
 
+/// Includes (writes, modifies) the shield badge code into README.md file.
+///
+/// # Example
+///
+/// ```
+/// use lmake_lines_of_code::*;
+///
+/// let v = readme_include("include this text");
+/// ```
 pub fn readme_include(include_str: &str) {
     let start_delimiter = "[comment]: # (lmake_lines_of_code start)";
     let end_delimiter = "[comment]: # (lmake_lines_of_code end)";

@@ -88,7 +88,7 @@ checksum = "9457b06509d27052635f90d6466700c65095fdf75409b3fbdd903e988b886f49"
 
 [[package]]
 name = "lmake_lines_of_code"
-version = "2020.613.1337"
+version = "1.1.5"
 dependencies = [
  "ansi_term 0.12.1",
  "clap",

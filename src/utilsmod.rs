@@ -1,12 +1,32 @@
-//! utilsmod.rs
-
-//use lazy_static::lazy_static;
-//use regex::Regex;
+// utilsmod.rs
+//! Often used common utility fn.
 use unwrap::unwrap;
 
 use std::{fs, io, path::Path};
-/// traverse dir (sub-dir) with exclude dir
-/// the find_file and the exclude dir strings must start with /
+
+/// Traverse dir and its sub-dir, but avoid excluded dirs.
+/// The find_file and the exclude dir strings must start with /.
+///
+/// # Example
+///
+/// ```
+/// use std::path::Path;
+/// use lmake_lines_of_code::*;
+///
+/// let files = traverse_dir_with_exclude_dir(
+///     Path::new("/home/project/src"),
+///     "/*.rs",
+///     // avoid big folders and other folders with *.crev
+///     &vec![
+///         "/.git".to_string(),
+///         "/target".to_string(),
+///         "/docs".to_string()
+///     ]
+/// ).unwrap();
+/// for rs_file_name in files.iter() {
+///     println!("{}", &rs_file_name);
+/// }
+/// ```
 pub fn traverse_dir_with_exclude_dir(
     dir: &Path,
     find_file: &str,
