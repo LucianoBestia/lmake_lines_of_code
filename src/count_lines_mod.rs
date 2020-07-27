@@ -6,7 +6,7 @@ use crate::utilsmod::*;
 use ansi_term::Colour::{Green, Yellow};
 use regex::Regex;
 use std::fs::File;
-use std::io::{BufRead, BufReader};
+use std::io::{BufRead, BufReader, ErrorKind};
 use std::{env, fs, path::Path};
 use unwrap::unwrap;
 
@@ -178,13 +178,25 @@ pub fn as_shield_badges(lines_of_code: &LinesOfCode) -> String {
     let output = std::process::Command::new("git")
         .arg("remote")
         .arg("-v")
-        .output()
-        .unwrap();
+        .output();
+    if let Err(error) = output.as_ref() {
+        if error.kind() == ErrorKind::NotFound {
+            // handle environments without a git installation
+            return String::new();
+        }
+    }
+    let output = output.unwrap();
     let output = String::from_utf8_lossy(&output.stdout);
 
     // regex capture 3 groups: website, user_name and repo_name
     let reg = unwrap!(Regex::new(r#"@(.*?):(.*?)/(.*?).git"#));
-    let cap = unwrap!(reg.captures(&output));
+    let cap = match reg.captures(&output) {
+        Some(cap) => cap,
+        None => {
+            // handle remote-less repositories and non-repositories
+            return String::new();
+        }
+    };
     let link = format!("https://{}/{}/{}/", &cap[1], &cap[2], &cap[3]);
 
     let src_code_lines = format!(
