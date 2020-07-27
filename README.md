@@ -108,7 +108,8 @@ I splitted the project into a lib and bin, so it could be used also as a lib.
 
 Please, spread this info.\
 Open source code needs a community effort to express trustworthiness.\
-Start with reading the reviews of the crates you use.Example: [web.crev.dev/rust-reviews/crate/num-traits/](https://web.crev.dev/rust-reviews/crate/num-traits/)  
+Start with reading the reviews of the crates you use. Example:  
+[web.crev.dev/rust-reviews/crate/num-traits/](https://web.crev.dev/rust-reviews/crate/num-traits/)  
 Than install the CLI [cargo-crev](https://github.com/crev-dev/cargo-crev)\.  
 Read the [Getting Started guide](https://github.com/crev-dev/cargo-crev/blob/master/cargo-crev/src/doc/getting_started.md).  
 On your Rust project, verify the trustworthiness of all dependencies, including transient dependencies with  
