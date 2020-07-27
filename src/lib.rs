@@ -10,6 +10,8 @@
 //! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
 //! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-33-orange.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
 //!
+//! [![crates.io](https://meritbadge.herokuapp.com/lmake_lines_of_code)](https://crates.io/crates/lmake_lines_of_code) [![Documentation](https://docs.rs/lmake_lines_of_code/badge.svg)](https://docs.rs/lmake_lines_of_code/) [![crev reviews](https://web.crev.dev/rust-reviews/badge/crev_count/lmake_lines_of_code.svg)](https://web.crev.dev/rust-reviews/crate/lmake_lines_of_code/) [![Lib.rs](https://img.shields.io/badge/Lib.rs-rust-orange.svg)](https://lib.rs/crates/lmake_lines_of_code/) [![Licence](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/blob/master/LICENSE) [![Rust](https://github.com/LucianoBestia/lmake_lines_of_code/workflows/Rust/badge.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
+//!
 //! ## Lines of code for Rust projects
 //!
 //! Lines of code are not a "perfect" measurement of anything.\
@@ -52,7 +54,33 @@
 //! ## Output
 //!
 //! The output is markdown text for a table and markdown text for shield badges.\
-//! Just copy/paste it into README.md.  
+//! If the CLI is called with one argument:  
+//! `lmake_lines_of_code http://website`  
+//! This will be used for the link of all 4 shield badges.  
+//! Else the app will try  
+//! `git remote -v`  
+//! to get the remote url.  
+//! You can copy/paste it into README.md.  
+//!
+//! ## Include into README.md
+//!
+//! If the README.md file contains these markers:  
+//!
+//! 1. `[comment]: # (lmake_lines_of_code start)`  
+//! 2. `[comment]: # (lmake_lines_of_code end)`  
+//!
+//! the CLI will include the shield badges code between them.  
+//! It will erase the previous content.  
+//! Use git diff to see the change.  
+//!
+//! ## Install and run
+//!
+//! `cargo install lmake_lines_of_code`  
+//! Run in the Rust project folder, where cargo.toml is.  
+//! If you use git:  
+//! `lmake_lines_of_code`  
+//! If you don't use git:  
+//! `lmake_lines_of_code http://repo-website`  
 //!
 // endregion: lmake_md_to_doc_comments include README.md A //!
 

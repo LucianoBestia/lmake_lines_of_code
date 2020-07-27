@@ -18,6 +18,8 @@
 
 [comment]: # (lmake_lines_of_code end)
 
+[![crates.io](https://meritbadge.herokuapp.com/lmake_lines_of_code)](https://crates.io/crates/lmake_lines_of_code) [![Documentation](https://docs.rs/lmake_lines_of_code/badge.svg)](https://docs.rs/lmake_lines_of_code/) [![crev reviews](https://web.crev.dev/rust-reviews/badge/crev_count/lmake_lines_of_code.svg)](https://web.crev.dev/rust-reviews/crate/lmake_lines_of_code/) [![Lib.rs](https://img.shields.io/badge/Lib.rs-rust-orange.svg)](https://lib.rs/crates/lmake_lines_of_code/) [![Licence](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/blob/master/LICENSE) [![Rust](https://github.com/LucianoBestia/lmake_lines_of_code/workflows/Rust/badge.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
+
 ## Lines of code for Rust projects
 
 Lines of code are not a "perfect" measurement of anything.\
@@ -60,22 +62,45 @@ The program counts lines of every project and sums them together.
 ## Output
 
 The output is markdown text for a table and markdown text for shield badges.\
-Just copy/paste it into README.md.  
+If the CLI is called with one argument:  
+`lmake_lines_of_code http://website`  
+This will be used for the link of all 4 shield badges.  
+Else the app will try  
+`git remote -v`  
+to get the remote url.  
+You can copy/paste it into README.md.  
 
-[comment]: # (lmake_md_to_doc_comments segment end A)
+## Include into README.md
+
+If the README.md file contains these markers:  
+
+1. `[comment]: # (lmake_lines_of_code start)`  
+2. `[comment]: # (lmake_lines_of_code end)`  
+
+the CLI will include the shield badges code between them.  
+It will erase the previous content.  
+Use git diff to see the change.  
 
 ## Install and run
 
 `cargo install lmake_lines_of_code`  
-Run in the Rust project folder, where cargo.toml is:  
-`lmake_lines_of_code`
+Run in the Rust project folder, where cargo.toml is.  
+If you use git:  
+`lmake_lines_of_code`  
+If you don't use git:  
+`lmake_lines_of_code http://repo-website`  
+
+[comment]: # (lmake_md_to_doc_comments segment end A)
 
 ## Development
 
+Repository:  
+<https://github.com/LucianoBestia/lmake_lines_of_code>
 Documentation:\
 <https://lucianobestia.github.io/lmake_lines_of_code>\
 List of prepared make tasks for development: build, run, doc, publish,...\
 `clear; cargo make`  
+I use this make util: <https://crates.io/crates/cargo-make>  
 I splitted the project into a lib and bin, so it could be used also as a lib.  
 
 ## CREV - Rust code reviews - Raise awareness
@@ -83,8 +108,11 @@ I splitted the project into a lib and bin, so it could be used also as a lib.
 Please, spread this info.\
 Open source code needs a community effort to express trustworthiness.\
 Start with reading the reviews of the crates you use.Example: [web.crev.dev/rust-reviews/crate/num-traits/](https://web.crev.dev/rust-reviews/crate/num-traits/)  
-Than install the CLI [cargo-crev](https://github.com/crev-dev/cargo-crev)\. Read the [Getting Started guide](https://github.com/crev-dev/cargo-crev/blob/master/cargo-crev/src/doc/getting_started.md).
-On your Rust project, verify the trustworthiness of all dependencies, including transient dependencies with `cargo crev verify`\
+Than install the CLI [cargo-crev](https://github.com/crev-dev/cargo-crev)\.  
+Read the [Getting Started guide](https://github.com/crev-dev/cargo-crev/blob/master/cargo-crev/src/doc/getting_started.md).  
+On your Rust project, verify the trustworthiness of all dependencies, including transient dependencies with  
+`cargo crev verify`\
 Write a new review for the crates you trust. Or for the crate versions you think are dangerous.\
 Help other developers, inform them and share your opinion.\
-Use this webpage to help you: [web.crev.dev/rust-reviews/review_new](https::/web.crev.dev/rust-reviews/review_new)  
+Use this webpage to help you:  
+[web.crev.dev/rust-reviews/review_new](https::/web.crev.dev/rust-reviews/review_new)  
