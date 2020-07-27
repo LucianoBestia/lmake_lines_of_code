@@ -210,7 +210,7 @@ pub fn as_md_table(lines_of_code: &LinesOfCode) -> String {
 /// use lmake_lines_of_code::*;
 ///
 /// let v = workspace_or_project_count_lines();
-/// let badges = as_shield_badges(&v,"", false,false);
+/// let badges = as_shield_badges(&v,"", true, true);
 ///
 /// println!("{}", badges);
 /// ```
