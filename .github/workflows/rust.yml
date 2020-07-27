@@ -1,4 +1,4 @@
-name: Rust
+name: RustGitHubActions
 
 on:
   push:
@@ -10,7 +10,7 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  build:
+  fmt_build_test:
 
     runs-on: ubuntu-latest
 
