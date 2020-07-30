@@ -7,7 +7,7 @@ use std::{fs, io, path::Path};
 /// Traverse dir and its sub-dir, but avoid excluded dirs.
 /// The find_file and the exclude dir strings must start with /.
 ///
-/// # Example
+/// ## Example
 ///
 /// ```
 /// use std::path::Path;

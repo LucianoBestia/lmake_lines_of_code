@@ -1,4 +1,4 @@
-// readme_include_mod.rs
+// include_into_readme_md_mod.rs
 //! Includes (writes, modifies) the shield badge code into README.md file.
 
 #[allow(unused_imports)]
@@ -8,14 +8,14 @@ use unwrap::unwrap;
 
 /// Includes (writes, modifies) the shield badge code into README.md file.
 ///
-/// # Example
+/// ## Example
 ///
 /// ```
 /// use lmake_lines_of_code::*;
 ///
-/// let v = readme_include("include this text");
+/// let v = include_into_readme_md("include this text");
 /// ```
-pub fn readme_include(include_str: &str) {
+pub fn include_into_readme_md(include_str: &str) {
     let start_delimiter = "[comment]: # (lmake_lines_of_code start)";
     let end_delimiter = "[comment]: # (lmake_lines_of_code end)";
     let file_name = "README.md";
@@ -30,7 +30,10 @@ pub fn readme_include(include_str: &str) {
                 new_readme_content.push_str(include_str);
                 new_readme_content.push_str("\n");
                 new_readme_content.push_str(&readme_content[pos_end..]);
-                println!("readme_include write file: {}", Green.paint(file_name));
+                println!(
+                    "include_into_readme_md write file: {}",
+                    Green.paint(file_name)
+                );
                 unwrap!(fs::write(file_name, new_readme_content));
             }
         }

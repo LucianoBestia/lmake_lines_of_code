@@ -89,7 +89,6 @@
 use ansi_term::Colour::{Green, Red, Yellow};
 //use ansi_term::Style;
 //use unwrap::unwrap;
-use clap::{App, Arg};
 use std::env;
 // endregion
 
@@ -103,21 +102,18 @@ fn main() {
     enable_ansi_support();
 
     // define the CLI input line parameters using the clap library
-    let arguments = App::new(env!("CARGO_PKG_NAME"))
+    let arguments = clap::App::new(env!("CARGO_PKG_NAME"))
         .version(env!("CARGO_PKG_VERSION"))
         .author(env!("CARGO_PKG_AUTHORS"))
         .about(env!("CARGO_PKG_DESCRIPTION"))
-        .arg(Arg::with_name("link").help("Link to include in shield badge. If not defined, the git remote repository will be used."))
+        .arg(clap::Arg::with_name("link").help("Link to include in shield badge. If not defined, the git remote repository will be used."))
         .get_matches();
 
     let link = arguments.value_of("link").unwrap_or("");
 
     println!("---- {} start ----", Green.paint(env!("CARGO_PKG_NAME")));
-    let v = workspace_or_project_count_lines();
-    println!("{}", as_md_table(&v));
-    let text_to_include = as_shield_badges(&v, link, false, false);
-    println!("{}", &text_to_include);
-    readme_include(&text_to_include);
+    let app = AppObject::new();
+    let _text_to_include = app.main(link);
     println!("---- {} end ----", Green.paint(env!("CARGO_PKG_NAME")));
 }
 

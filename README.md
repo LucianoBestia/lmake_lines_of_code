@@ -10,13 +10,7 @@
 [comment]: # (lmake_cargo_toml_to_md end)
 
 [comment]: # (lmake_lines_of_code start)
-
-[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-318-green.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
-[![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-196-blue.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
-[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-54-purple.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
-[![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
-[![Lines in tests](https://img.shields.io/badge/Lines_in_tests-33-orange.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
-
+include this text
 [comment]: # (lmake_lines_of_code end)
 
 [![crates.io](https://meritbadge.herokuapp.com/lmake_lines_of_code)](https://crates.io/crates/lmake_lines_of_code) [![Documentation](https://docs.rs/lmake_lines_of_code/badge.svg)](https://docs.rs/lmake_lines_of_code/) [![crev reviews](https://web.crev.dev/rust-reviews/badge/crev_count/lmake_lines_of_code.svg)](https://web.crev.dev/rust-reviews/crate/lmake_lines_of_code/) [![Lib.rs](https://img.shields.io/badge/Lib.rs-rust-orange.svg)](https://lib.rs/crates/lmake_lines_of_code/) [![Licence](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/blob/master/LICENSE) [![Rust](https://github.com/LucianoBestia/lmake_lines_of_code/workflows/RustAction/badge.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
@@ -103,6 +97,7 @@ List of prepared make tasks for development: build, run, doc, publish,...\
 `clear; cargo make`  
 I use this make util: <https://crates.io/crates/cargo-make>  
 I splitted the project into a lib and bin, so it could be used also as a lib.  
+Try to using MockAll for testing.  
 
 ## CREV - Rust code reviews - Raise awareness
 
@@ -118,3 +113,7 @@ Write a new review for the crates you trust. Or for the crate versions you think
 Help other developers, inform them and share your opinion.\
 Use this webpage to help you:  
 [web.crev.dev/rust-reviews/review_new](https::/web.crev.dev/rust-reviews/review_new)  
+
+## References
+
+https://blog.burntsushi.net/rust-error-handling/

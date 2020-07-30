@@ -91,6 +91,9 @@
 // PROS: more readable without knowing that the type is bool.
 #[allow(clippy::bool_comparison)]
 // endregion: Clippy
+use mockall::predicate::*;
+use mockall::*;
+
 mod count_lines_mod;
 mod readme_include_mod;
 mod utilsmod;
@@ -98,3 +101,45 @@ mod utilsmod;
 pub use count_lines_mod::*;
 pub use readme_include_mod::*;
 pub use utilsmod::*;
+
+/// An object to implement methods rather than functions.  
+/// The methods are always defined in Traits, to be testable/mockable.  
+/// Traits don't have access to fields, only to methods.  
+pub struct AppObject {}
+
+impl AppObject {
+    /// Constructor of the object that has all the public methods.  
+    /// No fields needed for now.  
+    pub fn new() -> AppObject {
+        AppObject {}
+    }
+    /// Runs all the public methods. It is called by the CLI main fn.
+    pub fn main(&self, link: &str) -> String {
+        let text_to_include = self.text_to_include(link);
+
+        include_into_readme_md(&text_to_include);
+        // return
+        text_to_include
+    }
+    pub fn text_to_include(&self, link: &str) -> String {
+        let v = self.workspace_or_project_count_lines();
+        println!("{}", self.to_string_as_md_table(&v));
+
+        let link = if link.is_empty() {
+            self.process_git_remote()
+        } else {
+            link.to_string()
+        };
+        let text_to_include = self.to_string_as_shield_badges(&v, &link);
+        println!("{}", &text_to_include);
+        // return
+        text_to_include
+    }
+}
+
+/// Traits and methods must be used for the mocking library.
+#[automock]
+pub trait TraitCountLines {
+    fn workspace_or_project_count_lines(&self) -> LinesOfCode;
+    fn process_git_remote(&self) -> String;
+}
