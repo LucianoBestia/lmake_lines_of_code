@@ -195,14 +195,16 @@ impl AppObject {
             .output()?;
 
         let output = String::from_utf8_lossy(&output.stdout).to_string();
-        // println!("output: {}", &output);
+        println!("output: {}", &output);
         // regex capture 3 groups: website, user_name and repo_name
         // "origin  git@github.com:LucianoBestia/lmake_lines_of_code.git (fetch)"
         let reg = Regex::new(r#"git@(.*?):(.*?)/(.*?).git"#)?;
         let cap = reg
             .captures(&output)
             .ok_or(anyhow::anyhow!("Error: reg.captures is None"))?;
-        dbg!(&cap);
+        // dbg!(&cap);
+        // on Github actions they don't use ssh, but https, I need to check that also
+
         // indexing can panic, but I would like it to Error
         anyhow::ensure!(
             cap.len() == 4,

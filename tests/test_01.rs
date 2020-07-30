@@ -4,6 +4,7 @@ use lmake_lines_of_code::*;
 // Before test, change this const to your repo link and actual lines of code of this project.
 // This is read from the CLI $ git remote -v.
 // If you don't use git or git remote, modify to empty string.
+// Github actions don't use SSH for git, but https.
 const REPO_LINK: &str = "https://github.com/LucianoBestia/lmake_lines_of_code/";
 // the count of lines of this project will change with time. Keep it actual for testing.
 const LINES_OF_CODE: LinesOfCode = LinesOfCode {
