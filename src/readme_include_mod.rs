@@ -12,8 +12,9 @@ use unwrap::unwrap;
 ///
 /// ```
 /// use lmake_lines_of_code::*;
-///
-/// let v = include_into_readme_md("include this text");
+/// let app = AppObject::new();
+/// let text_to_include = app.text_to_include("");
+/// let v = include_into_readme_md(&text_to_include);
 /// ```
 pub fn include_into_readme_md(include_str: &str) {
     let start_delimiter = "[comment]: # (lmake_lines_of_code start)";

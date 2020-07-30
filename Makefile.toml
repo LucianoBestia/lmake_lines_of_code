@@ -150,7 +150,7 @@ script= [
     "echo create simple index.html file in docs folder",
     "echo \"<meta http-equiv=\\\"refresh\\\" content=\\\"0; url=${CARGO_MAKE_CRATE_NAME}/index.html\\\" />\" > docs/index.html",
     # message to help user with next move
-    "echo after successful doc, run cargo make fmt msg_for_commit",
+    "echo after successful doc, run cargo make commit msg_for_commit",
 ]
 
 [tasks.commit]

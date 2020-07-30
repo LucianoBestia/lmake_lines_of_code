@@ -4,13 +4,18 @@
 
 [comment]: # (lmake_cargo_toml_to_md start)
 
-***version: 1.1.5  date: 2020-07-27 authors: Luciano Bestia***  
+***version: 1.1.6  date: 2020-07-30 authors: Luciano Bestia***  
 **Lines of code for Rust projects**
 
 [comment]: # (lmake_cargo_toml_to_md end)
 
 [comment]: # (lmake_lines_of_code start)
-include this text
+[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-365-green.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
+[![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-269-blue.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
+[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-52-purple.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
+[![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
+[![Lines in tests](https://img.shields.io/badge/Lines_in_tests-91-orange.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
+
 [comment]: # (lmake_lines_of_code end)
 
 [![crates.io](https://meritbadge.herokuapp.com/lmake_lines_of_code)](https://crates.io/crates/lmake_lines_of_code) [![Documentation](https://docs.rs/lmake_lines_of_code/badge.svg)](https://docs.rs/lmake_lines_of_code/) [![crev reviews](https://web.crev.dev/rust-reviews/badge/crev_count/lmake_lines_of_code.svg)](https://web.crev.dev/rust-reviews/crate/lmake_lines_of_code/) [![Lib.rs](https://img.shields.io/badge/Lib.rs-rust-orange.svg)](https://lib.rs/crates/lmake_lines_of_code/) [![Licence](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/blob/master/LICENSE) [![Rust](https://github.com/LucianoBestia/lmake_lines_of_code/workflows/RustAction/badge.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
@@ -82,7 +87,7 @@ Use git diff to see the change.
 Run in the Rust project folder, where cargo.toml is.  
 If you use git:  
 `lmake_lines_of_code`  
-If you don't use git:  
+If you don't use git add the link of repository as CLI argument:  
 `lmake_lines_of_code http://repo-website`  
 
 [comment]: # (lmake_md_to_doc_comments segment end A)
@@ -98,6 +103,12 @@ List of prepared make tasks for development: build, run, doc, publish,...\
 I use this make util: <https://crates.io/crates/cargo-make>  
 I splitted the project into a lib and bin, so it could be used also as a lib.  
 Try to using MockAll for testing.  
+
+## Testing
+
+Testing is difficult, because I use this own project to get the lines of code for the tests.  
+These will change as the code is modified. Moreover, the result from $git remote -v is different on different computers. To align with this changes, the testing has 2 const that must be manually updated to contain the actual data.  
+Testing will also modify the README.md file. Always after testing run cargo make doc to correct the README.md. Or just revert it using git.  
 
 ## CREV - Rust code reviews - Raise awareness
 
