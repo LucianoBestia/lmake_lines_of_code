@@ -8,10 +8,10 @@ use lmake_lines_of_code::*;
 const REPO_LINK: &str = "https://github.com/LucianoBestia/lmake_lines_of_code/";
 // the count of lines of this project will change with time. Keep it actual for testing.
 const LINES_OF_CODE: LinesOfCode = LinesOfCode {
-    src_code_lines: 377,
+    src_code_lines: 379,
     src_doc_comment_lines: 269,
     src_comment_lines: 56,
-    tests_lines: 130,
+    tests_lines: 142,
     examples_lines: 0,
 };
 
