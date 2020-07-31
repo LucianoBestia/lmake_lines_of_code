@@ -4,17 +4,17 @@
 
 [comment]: # (lmake_cargo_toml_to_md start)
 
-***version: 1.1.6  date: 2020-07-30 authors: Luciano Bestia***  
+***version: 1.1.6  date: 2020-07-31 authors: Luciano Bestia***  
 **Lines of code for Rust projects**
 
 [comment]: # (lmake_cargo_toml_to_md end)
 
 [comment]: # (lmake_lines_of_code start)
-[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-365-green.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
+[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-377-green.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
 [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-269-blue.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
-[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-52-purple.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
+[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-56-purple.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
 [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
-[![Lines in tests](https://img.shields.io/badge/Lines_in_tests-91-orange.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
+[![Lines in tests](https://img.shields.io/badge/Lines_in_tests-130-orange.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
 
 [comment]: # (lmake_lines_of_code end)
 
@@ -127,4 +127,4 @@ Use this webpage to help you:
 
 ## References
 
-https://blog.burntsushi.net/rust-error-handling/
+<https://blog.burntsushi.net/rust-error-handling/>

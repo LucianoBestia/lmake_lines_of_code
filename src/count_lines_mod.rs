@@ -88,7 +88,14 @@ impl TraitCountLines for AppObject {
     /// Then finds out the link to the repository with regex.  
     /// Returns empty string if something goes wrong: no git, no remote,...  
     fn process_git_remote(&self) -> String {
-        match self.intern_process_git_remote() {
+        let output = match self.git_remote_output() {
+            Ok(s) => s,
+            Err(e) => {
+                println!("{}", e);
+                return "".to_string();
+            }
+        };
+        match self.regex_capture(output){
             Ok(s) => return s,
             Err(e) => {
                 println!("{}", e);
@@ -186,25 +193,32 @@ impl AppObject {
         // return
         lines_of_code
     }
-    /// the internal fn returns a Result.
-    /// in the case of error the calling fn will return empty string.
-    fn intern_process_git_remote(&self) -> anyhow::Result<String> {
+    pub fn git_remote_output(&self) -> anyhow::Result<String>{
         let output = std::process::Command::new("git")
-            .arg("remote")
-            .arg("-v")
-            .output()?;
+        .arg("remote")
+        .arg("-v")
+        .output()?;
 
-        let output = String::from_utf8_lossy(&output.stdout).to_string();
-        println!("output: {}", &output);
+    let output = String::from_utf8(output.stdout)?;
+    println!("output: {}", &output);
+    // return
+    Ok(output)
+    }
+    /// returns a Result.
+    /// in the case of error the calling fn will return empty string.
+    pub fn regex_capture(&self, output:String) -> anyhow::Result<String> {
+        // on Github actions they don't use ssh, but https, I need to check that also
+        // I test my regex on https://regex101.com/
         // regex capture 3 groups: website, user_name and repo_name
         // "origin  git@github.com:LucianoBestia/lmake_lines_of_code.git (fetch)"
-        let reg = Regex::new(r#"git@(.*?):(.*?)/(.*?).git"#)?;
+        // origin    https://github.com/LucianoBestia/lmake_lines_of_code (fetch)
+        println!("{}", &output);
+        let reg = Regex::new(r#"origin\s*(?:https://)?(?:git@)?([^:/]*?)[:/]([^/]*?)/([^. ]*?)(?:\.git)?\s*\(fetch\)"#)?;
         let cap = reg
             .captures(&output)
             .ok_or(anyhow::anyhow!("Error: reg.captures is None"))?;
         // dbg!(&cap);
-        // on Github actions they don't use ssh, but https, I need to check that also
-
+        
         // indexing can panic, but I would like it to Error
         anyhow::ensure!(
             cap.len() == 4,
