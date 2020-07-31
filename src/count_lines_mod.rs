@@ -95,7 +95,7 @@ impl TraitCountLines for AppObject {
                 return "".to_string();
             }
         };
-        match self.regex_capture(output){
+        match self.regex_capture(output) {
             Ok(s) => return s,
             Err(e) => {
                 println!("{}", e);
@@ -193,32 +193,34 @@ impl AppObject {
         // return
         lines_of_code
     }
-    pub fn git_remote_output(&self) -> anyhow::Result<String>{
+    pub fn git_remote_output(&self) -> anyhow::Result<String> {
         let output = std::process::Command::new("git")
-        .arg("remote")
-        .arg("-v")
-        .output()?;
+            .arg("remote")
+            .arg("-v")
+            .output()?;
 
-    let output = String::from_utf8(output.stdout)?;
-    println!("output: {}", &output);
-    // return
-    Ok(output)
+        let output = String::from_utf8(output.stdout)?;
+        println!("output: {}", &output);
+        // return
+        Ok(output)
     }
     /// returns a Result.
     /// in the case of error the calling fn will return empty string.
-    pub fn regex_capture(&self, output:String) -> anyhow::Result<String> {
+    pub fn regex_capture(&self, output: String) -> anyhow::Result<String> {
         // on Github actions they don't use ssh, but https, I need to check that also
         // I test my regex on https://regex101.com/
         // regex capture 3 groups: website, user_name and repo_name
         // "origin  git@github.com:LucianoBestia/lmake_lines_of_code.git (fetch)"
         // origin    https://github.com/LucianoBestia/lmake_lines_of_code (fetch)
         println!("{}", &output);
-        let reg = Regex::new(r#"origin\s*(?:https://)?(?:git@)?([^:/]*?)[:/]([^/]*?)/([^. ]*?)(?:\.git)?\s*\(fetch\)"#)?;
+        let reg = Regex::new(
+            r#"origin\s*(?:https://)?(?:git@)?([^:/]*?)[:/]([^/]*?)/([^. ]*?)(?:\.git)?\s*\(fetch\)"#,
+        )?;
         let cap = reg
             .captures(&output)
             .ok_or(anyhow::anyhow!("Error: reg.captures is None"))?;
         // dbg!(&cap);
-        
+
         // indexing can panic, but I would like it to Error
         anyhow::ensure!(
             cap.len() == 4,

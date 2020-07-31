@@ -23,17 +23,20 @@ const LINES_OF_CODE: LinesOfCode = LinesOfCode {
 fn test_01_git_remote_output() {
     let app = AppObject::new();
     let res_output = app.git_remote_output();
-    let output = match res_output{
-        Ok(o)=>o,
-        Err(e)=>{println!("{}",e);String::new()},
+    let output = match res_output {
+        Ok(o) => o,
+        Err(e) => {
+            println!("{}", e);
+            String::new()
+        }
     };
-    if output.is_empty(){
+    if output.is_empty() {
         println!("output is empty");
-    }else if output.contains("git@"){
+    } else if output.contains("git@") {
         println!("contains git@");
-    }else if output.contains("https://"){
+    } else if output.contains("https://") {
         println!("contains https://");
-    }else {
+    } else {
         panic!("result unexpected");
     }
 }
@@ -43,15 +46,24 @@ fn test_01_git_remote_output() {
 /// origin  https://github.com/LucianoBestia/lmake_lines_of_code (fetch)
 fn test_02_regex_capture() {
     let app = AppObject::new();
-    let res_link = app.regex_capture("origin  git@github.com:LucianoBestia/lmake_lines_of_code.git (fetch)".to_string());
+    let res_link = app.regex_capture(
+        "origin  git@github.com:LucianoBestia/lmake_lines_of_code.git (fetch)".to_string(),
+    );
     let link = res_link.unwrap();
-    assert_eq!(&link, "https://github.com/LucianoBestia/lmake_lines_of_code/");
+    assert_eq!(
+        &link,
+        "https://github.com/LucianoBestia/lmake_lines_of_code/"
+    );
 
-    let res_link = app.regex_capture("origin  https://github.com/LucianoBestia/lmake_lines_of_code (fetch)".to_string());
+    let res_link = app.regex_capture(
+        "origin  https://github.com/LucianoBestia/lmake_lines_of_code (fetch)".to_string(),
+    );
     let link = res_link.unwrap();
-    assert_eq!(&link, "https://github.com/LucianoBestia/lmake_lines_of_code/");
+    assert_eq!(
+        &link,
+        "https://github.com/LucianoBestia/lmake_lines_of_code/"
+    );
 }
-
 
 #[test]
 /// change the const REPO_LINK accordingly to your system (does it use git, what repo remote link?)
