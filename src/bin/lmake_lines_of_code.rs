@@ -1,14 +1,14 @@
 // region: lmake_md_to_doc_comments include README.md A //!
 //! # lmake_lines_of_code  
 //!
-//! ***version: 1.1.6  date: 2020-07-31 authors: Luciano Bestia***  
+//! ***version: 1.1.7  date: 2020-08-22 authors: Luciano Bestia***  
 //! **Lines of code for Rust projects**
 //!
-//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-377-green.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
+//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-379-green.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
 //! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-269-blue.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
 //! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-56-purple.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
 //! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
-//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-130-orange.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
+//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-142-orange.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
 //!
 //! [![crates.io](https://meritbadge.herokuapp.com/lmake_lines_of_code)](https://crates.io/crates/lmake_lines_of_code) [![Documentation](https://docs.rs/lmake_lines_of_code/badge.svg)](https://docs.rs/lmake_lines_of_code/) [![crev reviews](https://web.crev.dev/rust-reviews/badge/crev_count/lmake_lines_of_code.svg)](https://web.crev.dev/rust-reviews/crate/lmake_lines_of_code/) [![Lib.rs](https://img.shields.io/badge/Lib.rs-rust-orange.svg)](https://lib.rs/crates/lmake_lines_of_code/) [![Licence](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/blob/master/LICENSE) [![Rust](https://github.com/LucianoBestia/lmake_lines_of_code/workflows/RustAction/badge.svg)](https://github.com/LucianoBestia/lmake_lines_of_code/)
 //!

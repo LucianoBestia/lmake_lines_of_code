@@ -4,7 +4,7 @@
 
 [comment]: # (lmake_cargo_toml_to_md start)
 
-***version: 1.1.6  date: 2020-07-31 authors: Luciano Bestia***  
+***version: 1.1.7  date: 2020-08-22 authors: Luciano Bestia***  
 **Lines of code for Rust projects**
 
 [comment]: # (lmake_cargo_toml_to_md end)
@@ -99,7 +99,7 @@ Repository:
 Documentation:\
 <https://lucianobestia.github.io/lmake_lines_of_code>\
 List of prepared make tasks for development: build, run, doc, publish,...\
-`clear; cargo make`  
+`cargo make`  
 I use this make util: <https://crates.io/crates/cargo-make>  
 I splitted the project into a lib and bin, so it could be used also as a lib.  
 Try to using MockAll for testing.  
